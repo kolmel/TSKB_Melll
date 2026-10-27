@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <float.h>
 /**
  * @brief вычисляет значение функции по заданной формуле
  * @param x - значение водимого числа х
@@ -44,7 +44,7 @@ double getDouble() {
     return value;
 }
 double checkNum(const double x) {
-    if (x==0.0) {
+    if (fabs(x)>DBL_EPSILON) {
         printf("Error!");
         exit(1);
     }
