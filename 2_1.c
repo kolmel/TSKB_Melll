@@ -1,28 +1,7 @@
+#include <math.h>
 #include <stdio.h>
-/**
- * @brief Вычисляет сумму двух чисел
- * @param ch1,ch2 вводимые числа
- * @return Рассчитанное значение
- */
-double summ(const double ch1, const double ch2);
-/**
- * @brief Вычисляет разность двух чисел
- * @param ch1,ch2 вводимые числа
- * @return Рассчитанное значение
- */
-double razn(const double ch1, const double ch2);
-/**
- * @brief Вычисляет произведение двух чисел
- * @param ch1,ch2 вводимые числа
- * @return Рассчитанное значение
- */
-double umn(const double ch1, const double ch2);
-/**
- * @brief Вычисляет частное двух чисел
- * @param ch1,ch2 вводимые числа
- * @return Рассчитанное значение
- */
-double del(const double ch1, const double ch2);
+#include <stdlib.h>
+#include <float.h>
 /**
  * @brief Считывает с клавиатуры занчение с плавающей точкой
  * @return Считанное значение
@@ -35,6 +14,13 @@ double getDouble();
 */
 double checkNum(const double ch2);
 /**
+ * @brief Находит сумму, разность, произведение или частное двух числе в зависимости от введенной операции
+ * @param ch1,ch2 - вводимые числа
+ * @param op - символ операции
+ * @return Расчитанное значение
+ */
+void vyvod(const double ch1, const double ch2, const double op);
+/**
 * @brief Точка входа в программу
 * @return 0, если программа выполнена корректно, иначе не 0
 */
@@ -43,10 +29,9 @@ int main()
     printf("Enter two numbers\n");
     double ch1=getDouble();
     double ch2=getDouble();
-    printf("Sum of numbers: %lf\n",summ(ch1,ch2));
-    printf("Number difference: %lf\n",razn(ch1,ch2));
-    printf("Product of numbers: %lf\n",umn(ch1,ch2));
-    printf("Quotient of numbers: %lf",del(ch1,ch2));
+    printf("Enter the operation: 1(Summ), 2(Difference), 3(Product), 4(Quotient)\n");
+    double op = getDouble();
+    vyvod(ch1,ch2, op);
     return 0;
 }
 
@@ -60,21 +45,29 @@ double getDouble() {
     return value;
 }
 double CheckNum(const double ch2) {
-    if (ch2==0) {
+    if (fabs(ch2)>DBL_EPSILON) {
         printf("Error!");
         exit(1);
     }
 }
-
-double summ(const double ch1, const double ch2) {
-    return ch1+ch2;
-}
-double razn(const double ch1, const double ch2) {
-    return ch1-ch2;
-}
-double umn(const double ch1, const double ch2) {
-    return ch1*ch2;
-}
-double del(const double ch1, const double ch2) {
-    return ch1/ch2;
+void vyvod(const double ch1, const double ch2, const double op) {
+    if (op==1) {
+        printf("Sum of numbers: %lf",(ch1+ch2));
+        exit(1);
+    }
+    if (op==2) {
+        printf("Number difference: %lf",(ch1-ch2));
+        exit(1);
+    }
+    if (op==3) {
+        printf("Product of numbers: %lf",(ch1*ch2));
+        exit(1);
+    }
+    if (op==4) {
+        printf("Quotient of numbers: %lf",(ch1/ch2));
+        exit(1);
+    }
+    else{
+        printf("Error!");
+    }
 }
