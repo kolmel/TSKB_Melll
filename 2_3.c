@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
+#include <float.h>
 /**
  * @brief точка входа в программу
  * @return 0, если программа выполнена корректно, иначе не 0
@@ -46,7 +47,7 @@ double getDouble() {
 }
 
 double CheckNum(const double x, const double y) {
-    if (x == y) {
+    if (fabs(x - y) <DBL_EPSILON) {
         printf("Error!");
         exit(1);
     }
