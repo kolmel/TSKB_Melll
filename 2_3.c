@@ -12,21 +12,14 @@ double getDouble();
 * @param y - значение переменной y
 * @return 0 если если числа не равны, иначе "Error!" и завершение программы
 */
-double CheckNum(const double x, const double y);
+double CheckNum(const double ch1, const double ch2);
 /**
-* @brief заменяет число x по условию
-* @param x - значение переменной х
-* @param y - значение переменной y
+* @brief заменяет число по условию
+* @param ch1 - значение переменной
+* @param ch2 - значение переменной
 * @return рассчитанное значение
 */
-double X(const double x, const double y);
-/**
-* @brief заменяет число y по условию
-* @param x - значение переменной х
-* @param y - значение переменной y
-* @return рассчитанное значение
-*/
-double Y(const double x, const double y);
+double vyvod(const double x, const double y);
 /**
  * @brief точка входа в программу
  * @return 0, если программа выполнена корректно, иначе не 0
@@ -37,8 +30,8 @@ int main() {
     printf("Enter y\n");
     double y = getDouble();
     CheckNum(x, y);
-    printf("x = %lf\n",X(x,y));
-    printf("y = %lf\n",Y(x,y));
+    printf("x = %lf\n",vyvod(x,y));
+    printf("y= %lf",vyvod(y,x));
     return 0;
 }
 
@@ -59,16 +52,10 @@ double CheckNum(const double x, const double y) {
     }
 }
 
-double X(const double x, const double y) {
-    if (x > y) {
-        return x*y*2;
+double vyvod(const double ch1, const double ch2) {
+    if (ch1 > ch2) {
+        return ch1*ch2*2;
     }
-    return (x+y)/2;
-}
+    return (ch1+ch2)/2;
 
-double Y(const double x, const double y) {
-    if (x < y) {
-        return x*y*2;
-    }
-    return (x+y)/2;
 }
