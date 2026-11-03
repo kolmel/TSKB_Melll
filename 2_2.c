@@ -15,11 +15,12 @@ double Y(const double x, const double a);
  */
 double getDouble();
 /**
-* @brief Проверяет не является ли x нулём
+* @brief Проверяет ограничения функции
 * @param x - значение переменной х
-* @return 0 если если число не равно нулю, иначе "Error!" и завершение программы
+* @param a - значение переменной a
+* @return 0 если ограничения функции не нарушены, иначе "Error!" и завершение программы
 */
-double checkNum(const double x);
+double checkNum(const double x, const double a);
 /**
  * @brief точка входа в программу
  * @return 0, если программа выполнена корректно, иначе не 0
@@ -28,8 +29,9 @@ int main()
 {
     printf("Enter x\n");
     double x = getDouble();
-    checkNum(x);
-    const double a = 1.65;
+    printf("Enter a\n");
+    double a = getDouble();
+    checkNum(x,a);
     printf("Y = %lf\n",Y(x,a));
     return 0;
 }
@@ -43,8 +45,8 @@ double getDouble() {
     }
     return value;
 }
-double checkNum(const double x) {
-    if (fabs(x)>DBL_EPSILON) {
+double checkNum(const double x, const double a) {
+    if (fabs(x)<=DBL_EPSILON || (x>=1.34 && (x+a)<(DBL_EPSILON))) {
         printf("Error!");
         exit(1);
     }
