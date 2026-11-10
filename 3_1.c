@@ -9,7 +9,8 @@
  */
 double Y(const double x);
 /**
- * @brief Считывает с клавиатуры занчение с плавающей точкой
+ * @brief Выводит текст и считывает с клавиатуры занчение с плавающей точкой
+ * @param *string - текст
  * @return Считанное значение
  */
 double getDouble(const char *string);
@@ -32,8 +33,13 @@ int main() {
     double step=getDouble("Enter the step size: ");
     checkNum(x,x_kon,step);
     for (x; x<x_kon+step; x+=step) {
-        printf("X = %lf, Y = %lf\n", x, Y(x));
-
+        printf("X = %lf", x);
+        if (x<=DBL_EPSILON) {
+            printf(" Cant calculate it with this x.\n");
+        }
+        else {
+            printf("Y = %lf\n", Y(x));
+        }
     }
     return 0;
 }
@@ -48,7 +54,7 @@ double getDouble(const char *string) {
     return value;
 }
 double checkNum(const double x,const double x_kon, const double step) {
-    if (x<=DBL_EPSILON || x_kon-x<=DBL_EPSILON || step<=DBL_EPSILON) {
+    if (x_kon-x<=DBL_EPSILON || step<=DBL_EPSILON) {
         printf("Error");
         exit(1);
     }
