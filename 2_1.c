@@ -49,6 +49,7 @@ int main()
             break;
         case QUOTIENT:
             printf("%lf",ch1/ch2);
+            break;
         default:
             printf("Error");
             exit(1);
