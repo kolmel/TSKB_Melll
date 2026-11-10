@@ -44,6 +44,10 @@ int main() {
     return 0;
 }
 double getDouble(const char *string) {
+    if (string==NULL) {
+        printf("Error");
+        exit(1);
+    }
     printf("%s", string);
     double value = 0.0;
     if (scanf("%lf",&value) != 1)
