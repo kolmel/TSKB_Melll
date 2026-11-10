@@ -2,24 +2,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
+enum OPERATIONS{
+    SUMM,
+    DIFERENCE,
+    PRODUCT,
+    QUOTIENT
+};
 /**
  * @brief Считывает с клавиатуры занчение с плавающей точкой
  * @return Считанное значение
  */
 double getDouble();
 /**
-* @brief Проверяет не является ли второе число нулём
-* @param ch2 второе число
-* @return 0 если если число не равно нулю, иначе "Error!" и завершение программы
-*/
-double checkNum(const double ch2);
-/**
- * @brief Находит сумму, разность, произведение или частное двух числе в зависимости от введенной операции
- * @param ch1,ch2 - вводимые числа
- * @param op - символ операции
- * @return Расчитанное значение
+ * @brief Считывает с клавиатуры целочисленное значение
+ * @return Считанное значение
  */
-void vyvod(const double ch1, const double ch2, const double op);
+int getInt();
+/**
+ * @brief Проверяет что поступившее число не 0
+ * @param chk - поступившее число
+ * @return 0 если число не 0, иначе "Error!" и завершение программы
+ */
+double checkNum(const double chk);
 /**
 * @brief Точка входа в программу
 * @return 0, если программа выполнена корректно, иначе не 0
@@ -29,9 +33,26 @@ int main()
     printf("Enter two numbers\n");
     double ch1=getDouble();
     double ch2=getDouble();
-    printf("Enter the operation: 1(Summ), 2(Difference), 3(Product), 4(Quotient)\n");
-    double op = getDouble();
-    vyvod(ch1,ch2, op);
+    checkNum(ch2);
+    printf("Enter the operation: 0(SUMM), 1(DIFERENCE), 2(PRODUCT), 3(QUOTIENT)\n");
+    int op = getInt();
+    enum OPERATIONS oper = op;
+    switch (oper) {
+        case SUMM:
+            printf("%lf",ch1+ch2);
+            break;
+        case DIFERENCE:
+            printf("%lf",ch1-ch2);
+            break;
+        case PRODUCT:
+            printf("%lf",ch1*ch2);
+            break;
+        case QUOTIENT:
+            printf("%lf",ch1/ch2);
+        default:
+            printf("Error");
+            exit(1);
+    }
     return 0;
 }
 
@@ -44,30 +65,19 @@ double getDouble() {
     }
     return value;
 }
-double CheckNum(const double ch2) {
-    if (fabs(ch2)>DBL_EPSILON) {
-        printf("Error!");
+int getInt() {
+    double value = 0.0;
+    if (scanf("%lf",&value) != 1)
+    {
+        printf("Error");
         exit(1);
     }
+    return value;
 }
-void vyvod(const double ch1, const double ch2, const double op) {
-    if (op==1) {
-        printf("Sum of numbers: %lf",(ch1+ch2));
+
+double checkNum(const double chk) {
+    if (fabs(chk)<=DBL_EPSILON) {
+        printf("Error");
         exit(1);
-    }
-    if (op==2) {
-        printf("Number difference: %lf",(ch1-ch2));
-        exit(1);
-    }
-    if (op==3) {
-        printf("Product of numbers: %lf",(ch1*ch2));
-        exit(1);
-    }
-    if (op==4) {
-        printf("Quotient of numbers: %lf",(ch1/ch2));
-        exit(1);
-    }
-    else{
-        printf("Error!");
     }
 }
