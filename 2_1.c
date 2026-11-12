@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
+/**
+ * @brief Выбор операции между двумя числами
+ * @param SUMM - сумма чисел
+ * @param DIFERENCE - разность чисел
+ * @param PRODUCT - произведение чисел
+ * @param QUOTIENT - частное чисел
+ * @return вызывает операцию суммы/разности/произведения/частного чисел
+ */
 enum OPERATIONS{
     SUMM,
     DIFERENCE,
