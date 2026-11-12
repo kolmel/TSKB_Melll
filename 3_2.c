@@ -3,12 +3,6 @@
 #include <math.h>
 #include <float.h>
 /**
- * @brief Вычисляет факториал для введённого числа
- * @param k - введённое число
- * @return Считанное значение
- */
-long long factr(const int k);
-/**
  * @brief Считывает с клавиатуры целочисленное значение
  * @return Считанное значение
  */
@@ -25,12 +19,13 @@ double getDouble(const char *string);
  * @return рассчитанное значение
  */
 double vir(const int k);
+
 /**
- * @brief Проверяет ограничения программы
- * @param n - значение переменной n
+ * @brief Проверяет ограничение для функции
+ * @param k - значение k
  * @return 0 если ограничения программы не нарушены, иначе "Error!" и завершение программы
  */
-int checkNum(const int n);
+double cheknum(const int k);
 /**
  * @brief точка входа в программу
  * @return 0, если программа выполнена корректно, иначе не 0
@@ -39,7 +34,7 @@ int main() {
     int k=1; //getInt("Enter a number of k: ")/
     int n = getInt("Enter a number of n: ");
     double e = getDouble("Enter a number of e: ");
-    checkNum(n);
+    cheknum(n);
     double summe = 0.0;
     double summnach = 0.0;
     for (k; k<=n; k++) {
@@ -50,13 +45,6 @@ int main() {
     }
     printf("%lf\n",summnach);
     printf("%lf",summe);
-}
-
-long long factr(const int k) {
-    if (k<=1) {
-        return 1;
-    }
-    return k*factr(k-1);
 }
 
 int getInt(const char *string) {
@@ -81,11 +69,15 @@ double getDouble(const char *string) {
 }
 
 double vir(const int k) {
-    return pow(-1,k)*1/(pow(factr(k),2));
+
+    if (k==1) {
+        return -1;
+    }
+    return -1*vir(k-1)/pow(k,2);
 }
 
-int checkNum(const int n) {
-    if (n<=1 || n>20) {
+double cheknum(const int k) {
+    if (k<1) {
         printf("Error");
         exit(1);
     }
