@@ -15,10 +15,11 @@ int getInt(const char *string);
 double getDouble(const char *string);
 /**
  * @brief вычисляет значение функции по заданной формуле
+ * @param i - значение переменной i
  * @param k - значение переменной k
  * @return рассчитанное значение
  */
-double vir(const int k);
+double vir(int i,const int k);
 
 /**
  * @brief Проверяет ограничение для функции
@@ -38,9 +39,10 @@ int main() {
     double summe = 0.0;
     double summnach = 0.0;
     for (k; k<=n; k++) {
-        summnach += vir(k);
-        if  (fabs(vir(k))-e>=DBL_EPSILON) {
-            summe += vir(k);
+        int i=1;
+        summnach += vir(i,k);
+        if  (fabs(vir(i,k))-e>=DBL_EPSILON) {
+            summe += vir(i,k);
         }
     }
     printf("%lf\n",summnach);
@@ -48,6 +50,10 @@ int main() {
 }
 
 int getInt(const char *string) {
+    if (string==NULL) {
+        printf("Error");
+        exit(1);
+    }
     printf("%s", string);
     int value = 0;
     if (scanf("%d",&value) != 1)
@@ -59,6 +65,10 @@ int getInt(const char *string) {
 }
 
 double getDouble(const char *string) {
+    if (string==NULL) {
+        printf("Error");
+        exit(1);
+    }
     printf("%s", string);
     double value = 0.0;
     if (scanf("%lf",&value) != 1) {
@@ -68,12 +78,11 @@ double getDouble(const char *string) {
     return value;
 }
 
-double vir(const int k) {
-
-    if (k==1) {
-        return -1;
+double vir(int i, const int k) {
+    if (i<k) {
+        return -1*vir(i+1,k)/pow(i,2);
     }
-    return -1*vir(k-1)/pow(k,2);
+    return -1/pow(i,2);
 }
 
 double cheknum(const int k) {
