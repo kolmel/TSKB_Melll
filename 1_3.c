@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <math.h>
 /**
  * @brief Считывает с клавиатуры занчение с плавающей точкой
  * @return Считанное значение
@@ -35,5 +35,5 @@ double getDouble()
 }
 
 double temp(double const mas, double const energ, const double udtepl) {
-    return abs(energ/udtepl/mas);
+    return fabs(energ/udtepl/mas);
 }
