@@ -40,10 +40,14 @@ int main() {
         n++;
 
     }
-
+    return 0;
 }
 
 double getDouble(const char *string) {
+    if (string==NULL) {
+        printf("Error");
+        exit(1);
+    }
     printf("%s", string);
     double value = 0.0;
     if (scanf("%lf",&value) != 1)
@@ -60,5 +64,5 @@ double Y(const double x) {
 
 double summ(const double x, const int n) {
     if (n==0){return 1;}
-    return -1*pow(x,2)/(4*pow(n,2)-2*n)*summ(x,n-1);
+    return -1*x*x/(4*n*n-2*n)*summ(x,n-1);
 }
