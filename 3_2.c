@@ -19,7 +19,7 @@ double getDouble(const char *string);
  * @param k - значение переменной k
  * @return рассчитанное значение
  */
-double vir(int i,const int k);
+double vir(const int k, double pref);
 
 /**
  * @brief Проверяет ограничение для функции
@@ -37,13 +37,16 @@ int main() {
     double e = getDouble("Enter a number of e: ");
     cheknum(n);
     double summe = 0.0;
-    double summnach = 0.0;
-    for (k; k<=n; k++) {
-        int i=1;
-        summnach += vir(i,k);
-        if  (fabs(vir(i,k))-e>=DBL_EPSILON) {
-            summe += vir(i,k);
-        }
+    double pipupa =-1.0;
+    double summnach = -1.0;
+    for (k; k<=n-1; k++) {
+        pipupa=vir(k,pipupa);
+        summnach += pipupa;
+    }
+    pipupa=-1.0;
+    for (k=1;fabs(pipupa)>=e;k++) {
+        summe+=pipupa;
+        pipupa=vir(k,pipupa);
     }
     printf("%lf\n",summnach);
     printf("%lf",summe);
@@ -78,11 +81,8 @@ double getDouble(const char *string) {
     return value;
 }
 
-double vir(int i, const int k) {
-    if (i<k) {
-        return -1*vir(i+1,k)/pow(i,2);
-    }
-    return -1/pow(i,2);
+double vir(const int k, double pref) {
+    return pref * (-1)/pow((k+1),2);
 }
 
 double cheknum(const int k) {
