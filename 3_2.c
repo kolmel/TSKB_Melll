@@ -17,39 +17,39 @@ double getDouble(const char *string);
  * @brief вычисляет значение функции по заданной формуле
  * @param pref - значение переменной pref
  * @param k - значение переменной k
- * @return рассчитанное значение
+ * @return Рассчитанное значение
  */
-double vir(const int k, double pref);
+double vir(const int k, const double pref);
 
 /**
  * @brief Проверяет ограничение для функции
  * @param k - значение k
  * @return 0 если ограничения программы не нарушены, иначе "Error!" и завершение программы
  */
-double cheknum(const int k);
+double cheknum(const int k, const double e);
+/**
+ * @brief Вычисляет сумму n чисел
+ * @param n - значение n
+ * @return Рассчитанное значение
+ */
+double summnac(const int n);
+/**
+ * @brief Вычисляет сумму чисел по модулю меньших e
+ * @param e - значение e
+ * @return Рассчитанное значение
+ */
+double sume(const double e);
 /**
  * @brief точка входа в программу
  * @return 0, если программа выполнена корректно, иначе не 0
  */
 int main() {
-    int k=1; //getInt("Enter a number of k: ")/
     int n = getInt("Enter a number of n: ");
     double e = getDouble("Enter a number of e: ");
-    cheknum(n);
-    double summe = 0.0;
-    double pipupa =-1.0;
-    double summnach = -1.0;
-    for (k; k<=n-1; k++) {
-        pipupa=vir(k,pipupa);
-        summnach += pipupa;
-    }
-    pipupa=-1.0;
-    for (k=1;fabs(pipupa)>=e;k++) {
-        summe+=pipupa;
-        pipupa=vir(k,pipupa);
-    }
-    printf("%lf\n",summnach);
-    printf("%lf",summe);
+    cheknum(n, e);
+    printf("%lf\n",summnac(n));
+    printf("%lf",sume(e));
+    return 0;
 }
 
 int getInt(const char *string) {
@@ -81,13 +81,33 @@ double getDouble(const char *string) {
     return value;
 }
 
-double vir(const int k, double pref) {
+double vir(const int k,const double pref) {
     return pref * (-1)/pow((k+1),2);
 }
 
-double cheknum(const int k) {
-    if (k<1) {
+double cheknum(const int k, const double e) {
+    if (k<1|| fabs(e)<=DBL_EPSILON) {
         printf("Error");
         exit(1);
     }
+}
+
+double summnac(const int n) {
+    double pipupa =-1.0;
+    double summnach = -1.0;
+    for (int k=1; k<=n-1; k++) {
+        pipupa=vir(k,pipupa);
+        summnach += pipupa;
+    }
+    return summnach;
+}
+
+double sume(const double e) {
+    double summe = 0.0;
+    double pipupa=-1.0;
+    for (int k=1;fabs(pipupa)>=e;k++) {
+        summe+=pipupa;
+        pipupa=vir(k,pipupa);
+    }
+    return summe;
 }
