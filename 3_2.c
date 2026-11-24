@@ -15,7 +15,7 @@ int getInt(const char *string);
 double getDouble(const char *string);
 /**
  * @brief вычисляет значение функции по заданной формуле
- * @param i - значение переменной i
+ * @param pref - значение переменной pref
  * @param k - значение переменной k
  * @return рассчитанное значение
  */
